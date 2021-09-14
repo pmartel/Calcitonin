@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Calcitonin</title>
+<script src="calcitonin.js"></script>
+
+</head>
+<!--
+ Copyright  2021 Philip O. Martel 
+ released under the MIT License
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<body onload="setup();">
+
+<h3><a href="aboutCalcitonin.html" target="blank">About this program</a></h3>
+<br>
+<h3>Starting date and nostril<h3>
+<form>
+<label for="s_date">Start date</label>
+<input id="s_date" type="date" name="s_date"></input>
+<br>
+<label for="s_left">Nostril&nbsp;&nbsp;&nbsp; left</label>
+<input id="s_left" type="radio" name='nostril' value='left'></input>
+<label >right</label>
+<input id="s_right" type="radio" name='nostril' value='right'></input>
+<br>
+<button id='saveBtn' onclick='saveData();'>Save data</button>
+</form>
+<h3>current date and nostril<h3>
+<form>
+<label for="c_date">Current date</label>
+<input id="c_date" type="date" name="c_date" onchange='showDate();'></input>
+<br>
+<label for="c_left">Nostril&nbsp;&nbsp;&nbsp; left</label>
+<input id="c_left" type="radio"></input>
+<label for="c_right">right</label>
+<input id="c_right" type="radio"></input>
+<br>
+<p id='a_days'>days since start<p>
+</form></body>
+</html>
+ 
