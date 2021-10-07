@@ -25,11 +25,11 @@ function dateToValue( d ) {
 
 function setup() {
 	//alert('in setup()');
-	//check if cookie exists, if so load it
-	var l_sDate, l_sLeft, l_sRight;
+	//check if local storage exists, if so load it
+	var l_sDate, l_sLeft, l_sRight, l_skips;
 	var cDate;
 	var sDateVal,dC, dS, sLeft, ts;
-	var daysActive, aDays, oddDays;
+	var daysActive, aDays, oddDays, skipDays;
 
 	l_sDate = localStorage.getItem('s_date');
 	
@@ -42,7 +42,7 @@ function setup() {
 		document.getElementById('s_left').checked = (l_sLeft == 'true');
 		l_sRight = localStorage.getItem('s_right');
 		document.getElementById('s_right').checked = (l_sRight == 'true');
-
+		l_skips = localStorage.getItem('skips');
 	}
 	//load current date to document
 	cDate = document.getElementById('c_date');
@@ -50,16 +50,20 @@ function setup() {
 	dC = midnight(dC);
 	cDate.value = dateToValue(dC);
 	
-	// if startup info is present, calculate nostril, days since start
+	// if startup info is present, calculate nostril, days since start doses 
 	sDateVal = document.getElementById('s_date').value;
 	if (sDateVal != "") {
 		ts = sDateVal.split('-');
 		dS = new Date( parseInt(ts[0]), parseInt(ts[1])-1, parseInt(ts[2]));
 		dS = midnight(dS);
 		daysActive = (dC - dS)/msPerDay;
+		daysActive -= parseInt(l_skips);
 		aDays = document.getElementById( 'a_days');
-		aDays.innerHTML = daysActive + ' days since start';
+		aDays.innerHTML = daysActive + ' doses since start';
 		sLeft = document.getElementById('s_left').checked;
+		document.getElementById("skips").value = l_skips;
+	
+
 		oddDays = daysActive & 1;
 		if ( oddDays ^ sLeft ) {
 			document.getElementById('c_left').checked = true;
@@ -71,7 +75,17 @@ function setup() {
 	}
 }
 
-function saveData() {
+function saveCurData(){
+	var skips = document.getElementById('skips');
+	
+	if ( document.getElementById("c_skip").checked ) {
+		skips.value = Number(skips.value) +1;
+	}
+	localStorage.setItem('skips',skips.value);
+	alert( "Current date recorded" );
+
+}
+function saveInitialData() {
 	//alert('in saveData()');
 	var saveOk = true;
 	var cook = document.cookie;
@@ -91,7 +105,8 @@ function saveData() {
 	if ( saveOk ) {
 		localStorage.setItem('s_date', d);
 		localStorage.setItem('s_left', l);
-		localStorage.setItem('s_right', r);		
+		localStorage.setItem('s_right', r);	
+		localStorage.setItem('skips', 0);
 		alert( "Data saved" );
 	} else {
 		alert( 'Data not saved: ' + saveMsg );

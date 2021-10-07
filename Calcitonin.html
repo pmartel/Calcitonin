@@ -29,8 +29,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 <input id="s_left" type="radio" name='nostril' value='left'></input>
 <label >right</label>
 <input id="s_right" type="radio" name='nostril' value='right'></input>
+
 <br>
-<button id='saveBtn' onclick='saveData();'>Save data</button>
+<button id='saveBtn' onclick='saveInitialData();'>Save data</button>
 </form>
 <h3>current date and nostril<h3>
 <form>
@@ -39,10 +40,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 <br>
 <label for="c_left">Nostril&nbsp;&nbsp;&nbsp; left</label>
 <input id="c_left" type="radio"></input>
-<label for="c_right">right</label>
+<label for="c_right">&nbsp;&nbsp;right</label>
 <input id="c_right" type="radio"></input>
+<label >&nbsp;&nbsp;skip</label>
+<input id="c_skip" type="radio"></input>
 <br>
-<p id='a_days'>days since start<p>
-</form></body>
+<input id="skips" type="number" maxlength="2" size="2" min="0" max="99" value="0"> days skipped</input>
+<br> 
+<p id='a_days'>doses since start<p>
+<br>
+<button id='curSaveBtn' onclick='saveCurData();'>Record skip day</button>
+</form>
+</body>
 </html>
  
