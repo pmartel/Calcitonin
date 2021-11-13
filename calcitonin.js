@@ -56,7 +56,8 @@ function setup() {
 		ts = sDateVal.split('-');
 		dS = new Date( parseInt(ts[0]), parseInt(ts[1])-1, parseInt(ts[2]));
 		dS = midnight(dS);
-		daysActive = (dC - dS)/msPerDay;
+		daysActive = ((dC - dS)/msPerDay)
+		daysActive = daysActive.toFixed(0); //handles DST issues
 		daysActive -= parseInt(l_skips);
 		aDays = document.getElementById( 'a_days');
 		aDays.innerHTML = daysActive + ' doses since start';
